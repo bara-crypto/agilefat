@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agilefat-deployment
+  labels:
+    app: agilefat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agilefat
+  template:
+    metadata:
+      labels:
+        app: agilefat
+    spec:
+      containers:
+      - name: agilefat-container
+        image: sanjaydocker2005/agilefat:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: agilefat-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: agilefat
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9090
