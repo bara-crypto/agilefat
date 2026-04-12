@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven' 
+        jdk 'JDK_HOME'   
+    }
+
+    environment {
+        REPO_URL = "https://github.com/bara-crypto/agilefat"
+    }
+
+    stages {
+        stage('Initialize & Clone') {
+            steps {
+                git branch: 'main', url: "${REPO_URL}"
+            }
+        }
+
+        stage('Maven Build') {
+            steps {
+                // Generates target/agilefat.jar
+                bat 'mvn clean package -DskipTests'
+            }
+        }
+
+        stage('Docker Image Build & Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-creds', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+                    bat "docker login -u %DOCKER_USER% -p %DOCKER_PASS%"
+                    bat "docker build -t sanjaydocker2005/agilefat:latest ."
+                    bat "docker push sanjaydocker2005/agilefat:latest"
+                }
+            }
+        }
+
+        stage('Kubernetes Deployment') {
+            steps {
+                bat 'kubectl apply -f deployment.yaml'
+            }
+        }
+    }
+}
