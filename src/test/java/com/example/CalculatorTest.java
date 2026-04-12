@@ -3,9 +3,9 @@ package com.example;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-public class CalculatorTest {
+public class AgilefatTest {
 
-    Calculator calculator = new Calculator();
+    Agilefat calculator = new Agilefat();
 
     @Test
     void testAdd() {
