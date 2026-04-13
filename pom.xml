@@ -44,7 +44,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>Agilefat</mainClass>
+                            <mainClass>com.example.Agilefat</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
