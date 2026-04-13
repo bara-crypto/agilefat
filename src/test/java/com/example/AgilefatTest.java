@@ -3,17 +3,23 @@ package com.example;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-public class AgilefatTest {
+public class Agilefattest {
 
     Agilefat calculator = new Agilefat();
 
     @Test
-    void testAdd() {
-        assertEquals(5, calculator.add(2, 3), "2 + 3 should equal 5");
+    void testlending1()
+    {
+        assertEquals("man-by gauresh-lended", calculator.lending("man-by gauresh"));
     }
-
     @Test
-    void testSubtract() {
-        assertEquals(2, calculator.subtract(5, 3), "5 - 3 should equal 2");
+    void testlending2()
+    {
+        assertEquals("life-by ranveer-lended", calculator.lending("life-by ranveer"));
+    }
+    @Test
+    void testlending3()
+    {
+        assertEquals("M. adhavan-by adihesh-lended", calculator.lending("M. adhavan-by adihesh"));
     }
 }
