@@ -15,7 +15,7 @@ WORKDIR /app
 
 # Copy the JAR from the 'build' stage
 # Note: Use a wildcard if the version changes, or set <finalName> in pom.xml
-COPY --from=build /app/target/*.jar agilefat.jar
+COPY --from=build /app/target/agilefat.jar agilefat.jar
 
 EXPOSE 9090
 ENTRYPOINT ["java", "-jar", "agilefat.jar"]
